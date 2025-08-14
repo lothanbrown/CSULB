@@ -6,7 +6,6 @@ def show_slainte_brewery_db_manager():
 
     uploaded_file = st.file_uploader("Upload 'Slainte Brewery Data for Python.xlsx'", type=["xlsx"])
     if uploaded_file:
-        # Sheet selection and loading
         xl = pd.ExcelFile(uploaded_file)
         st.write("Worksheets found:", xl.sheet_names)
 
@@ -17,42 +16,75 @@ def show_slainte_brewery_db_manager():
         st.subheader("1. First 5 Rows of Each Sheet")
         st.write("**Customers:**")
         st.dataframe(s_cust.head())
+        st.code(
+            "s_cust = pd.read_excel('Slainte Brewery Data for Python.xlsx', sheet_name='Customers')\n"
+            "s_cust.head()",
+            language="python"
+        )
         st.write("**Sales Items:**")
         st.dataframe(s_sales.head())
+        st.code(
+            "s_sales = pd.read_excel('Slainte Brewery Data for Python.xlsx', sheet_name='Sales Items')\n"
+            "s_sales.head()",
+            language="python"
+        )
 
         st.subheader("2. Summary Statistics")
         st.write("**Customers:**")
         st.dataframe(s_cust.describe())
+        st.code("s_cust.describe()", language="python")
         st.write("**Sales Items:**")
         st.dataframe(s_sales.describe())
+        st.code("s_sales.describe()", language="python")
 
         st.subheader("3. Numeric Columns & Correlations (Sales Items)")
         numeric_columns = s_sales.select_dtypes(include=['int', 'float']).columns
         st.write("Numeric columns:", list(numeric_columns))
         st.write("Correlation matrix:")
         st.dataframe(s_sales[numeric_columns].corr())
+        st.code(
+            "numeric_columns = s_sales.select_dtypes(include=['int', 'float']).columns\n"
+            "s_sales[numeric_columns].corr()",
+            language="python"
+        )
 
         st.subheader("4. Filter Sales Items by Product Code")
         product_codes = s_sales['Product_Code'].unique()
         selected_code = st.selectbox("Select Product Code to filter:", product_codes)
         filtered_df = s_sales[s_sales['Product_Code'] == selected_code]
         st.dataframe(filtered_df)
+        st.code(
+            "filtered_df = s_sales[s_sales['Product_Code'] == selected_code]",
+            language="python"
+        )
 
         st.subheader("5. Merge Sales Items with Customers (SQL JOIN)")
         cust_sales = pd.merge(s_sales, s_cust, on='Customer_ID', how='left')
         st.dataframe(cust_sales.head())
+        st.code(
+            "cust_sales = pd.merge(s_sales, s_cust, on='Customer_ID', how='left')\n"
+            "cust_sales.head()",
+            language="python"
+        )
 
         st.subheader("6. Group By / Pivot Table")
         st.write("**Sum of Amount by Customer State:**")
         grouped_state = cust_sales.groupby('Customer_State').agg({'Amount': ['sum']})
         st.dataframe(grouped_state)
+        st.code(
+            "grouped_state = cust_sales.groupby('Customer_State').agg({'Amount': ['sum']})",
+            language="python"
+        )
 
         st.write("**Sum of Amount by Product Code:**")
         grouped_product = cust_sales.groupby('Product_Code').agg({'Amount': ['sum']})
         st.dataframe(grouped_product)
+        st.code(
+            "grouped_product = cust_sales.groupby('Product_Code').agg({'Amount': ['sum']})",
+            language="python"
+        )
 
         st.subheader("7. Download Results")
-        # Write multiple DataFrames to Excel in memory
         import io
         output = io.BytesIO()
         with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
@@ -67,6 +99,15 @@ def show_slainte_brewery_db_manager():
             data=output,
             file_name="Slainte_Brewery_All_Results.xlsx",
             mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        )
+        st.code(
+            "with pd.ExcelWriter('Slainte_Brewery_All_Results.xlsx') as writer:\n"
+            "    s_cust.to_excel(writer, sheet_name='Customers')\n"
+            "    s_sales.to_excel(writer, sheet_name='Sales Items')\n"
+            "    grouped_state.to_excel(writer, sheet_name='Grouped State')\n"
+            "    grouped_product.to_excel(writer, sheet_name='Grouped Product')\n"
+            "    cust_sales.to_excel(writer, sheet_name='Merged')",
+            language="python"
         )
     else:
         st.info("Please upload the Excel file to begin.")
