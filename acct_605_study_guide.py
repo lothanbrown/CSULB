@@ -5,6 +5,8 @@ from sec_date_functions_app import show_sec_date_functions_app
 from financial_pmt_app import show_financial_pmt_app
 from data_analysis_app import show_data_analysis_app
 from slainte_brewery_db_manager import show_slainte_brewery_db_manager
+from eu_superstore_dashboard import show_eu_superstore_dashboard
+from libayshuns_project import show_libayshuns_project
 
 st.set_page_config(page_title='ACCT 605 Data Analytics Study Guide', layout='wide')
 
@@ -42,7 +44,8 @@ topics = [
     "SQL Practice",
     "Alteryx Cloud",
     "Python",
-    "Tableau"
+    "Tableau",
+    "Libayshuns Project" 
 ]
 choice = st.sidebar.selectbox("Choose a topic:", topics)
 
@@ -125,12 +128,24 @@ elif choice == topics[4]:
     elif python_option == "Python Practice 2":
         st.info("Python Practice 2 coming soon!")
 
-elif choice == topics[5]:
-    st.header("Tableau")
+elif choice == topics[5]:  # or whatever index you want
+    st.header("EU Superstore Analysis")
     st.markdown("""
-#### **Tableau Essentials**
+#### **EU Superstore Dashboard**
 
-1. **Data Connections**: Connect to various data sources.
-2. **Visualizations**: Create interactive dashboards.
-3. **Sharing Insights**: Publish and share reports.
+1. **KPIs**: Sales, Profit, Customers.
+2. **Map**: Sales by Country.
+3. **Line Chart**: Sales by Month.
+4. **Bar Chart**: Sales by Product.
 """)
+    show_eu_superstore_dashboard()
+elif choice == topics[6]:
+    st.header("Libayshuns Project")
+    st.markdown("""
+#### **Libayshuns Project Overview**
+
+1. **Objective**: Improve customer engagement through personalized marketing.
+2. **Data Sources**: CRM, Sales Data, Customer Feedback.
+3. **Key Metrics**: Customer Retention, Sales Growth, Campaign ROI.
+""")
+    show_libayshuns_project()
