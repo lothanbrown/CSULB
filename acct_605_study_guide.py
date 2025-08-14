@@ -4,6 +4,7 @@ from nfl_text_functions_app import show_nfl_text_functions_app
 from sec_date_functions_app import show_sec_date_functions_app
 from financial_pmt_app import show_financial_pmt_app
 from data_analysis_app import show_data_analysis_app
+from slainte_brewery_db_manager import show_slainte_brewery_db_manager
 
 st.set_page_config(page_title='ACCT 605 Data Analytics Study Guide', layout='wide')
 
@@ -17,7 +18,7 @@ st.markdown(
     """
     <style>
     .stApp {
-        background-color: #ffffff;
+        background-color: #000000; /* Black background */
     }
     .css-18e3th9 {
         background-color: #222222 !important;
@@ -109,13 +110,20 @@ elif choice == topics[3]:
 
 elif choice == topics[4]:
     st.header("Python")
-    st.markdown("""
-#### **Python for Data Analysis**
-
-1. **Pandas**: Data manipulation.
-2. **NumPy**: Numerical computing.
-3. **Matplotlib**: Data visualization.
-""")
+    python_option = st.radio(
+        "Choose a Python practice:",
+        [
+            "Python Practice 1",
+            "Python Practice 2",
+            "Exercise Using Pandas"
+        ]
+    )
+    if python_option == "Exercise Using Pandas":
+        show_slainte_brewery_db_manager()
+    elif python_option == "Python Practice 1":
+        st.info("Python Practice 1 coming soon!")
+    elif python_option == "Python Practice 2":
+        st.info("Python Practice 2 coming soon!")
 
 elif choice == topics[5]:
     st.header("Tableau")
