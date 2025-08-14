@@ -3,20 +3,43 @@ from nfl_team_perf_app import show_nfl_team_perf_app
 from nfl_text_functions_app import show_nfl_text_functions_app
 from sec_date_functions_app import show_sec_date_functions_app
 from financial_pmt_app import show_financial_pmt_app
+from data_analysis_app import show_data_analysis_app
 
 st.set_page_config(page_title='ACCT 605 Data Analytics Study Guide', layout='wide')
 
 st.title("ACCT 605-01: Data Analytics in Accounting")
 st.markdown("""
-Welcome to your interactive study guide! Use the sidebar to navigate between topics.
+Welcome to your interactive practice guide!
+Use the sidebar to navigate between topics.
 ---
 """)
-
+st.markdown(
+    """
+    <style>
+    .stApp {
+        background-color: #ffffff;
+    }
+    .css-18e3th9 {
+        background-color: #222222 !important;
+    }
+    .css-1d391kg {
+        color: #FFC72C !important;
+    }
+    .stButton>button {
+        background-color: #FFC72C;
+        color: #000;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 topics = [
     "Excel Review",
     "Statistics",
-    "Structured Query Language",
-    "Alteryx Cloud Application",
+    "SQL Practice",
+    "Alteryx Cloud",
     "Python",
     "Tableau"
 ]
@@ -42,13 +65,17 @@ if choice == topics[0]:
 
 elif choice == topics[1]:
     st.header("Statistics")
-    st.markdown("""
-#### **Key Concepts**
+    analysis_tool = st.radio(
+        "Choose a statistical analysis tool:",
+        [
+            "Descriptive Statistics", 
+            "Histogram", 
+            "Correlation", 
+            "Regression"
+        ]
+    )
 
-1. **Mean**: Average value.
-2. **Median**: Middle value.
-3. **Standard Deviation**: Measure of variability.
-""")
+    show_data_analysis_app(selected_tool=analysis_tool)
 
 elif choice == topics[2]:
     st.header("Structured Query Language")
