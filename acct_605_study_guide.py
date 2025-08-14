@@ -1,5 +1,8 @@
 import streamlit as st
 from nfl_team_perf_app import show_nfl_team_perf_app
+from nfl_text_functions_app import show_nfl_text_functions_app
+from sec_date_functions_app import show_sec_date_functions_app
+from financial_pmt_app import show_financial_pmt_app
 
 st.set_page_config(page_title='ACCT 605 Data Analytics Study Guide', layout='wide')
 
@@ -21,13 +24,21 @@ choice = st.sidebar.selectbox("Choose a topic:", topics)
 
 if choice == topics[0]:
     st.header("Excel Review")
-    st.markdown("""
-#### **Excel Functions**
+    excel_func = st.radio(
+        "Choose an Excel function to practice:",
+        [
+            "Text Functions", 
+            "Date Functions", 
+            "PMT Financial Function"
+        ]
+    )
 
-1. **SUMIFS**: Conditional sum.
-2. **VLOOKUP**: Vertical lookup.
-3. **Pivot Tables**: Data summarization.
-""")
+    if excel_func == "Text Functions":
+        show_nfl_text_functions_app()
+    elif excel_func == "Date Functions":
+        show_sec_date_functions_app()
+    elif excel_func == "PMT Financial Function":
+        show_financial_pmt_app()
 
 elif choice == topics[1]:
     st.header("Statistics")
