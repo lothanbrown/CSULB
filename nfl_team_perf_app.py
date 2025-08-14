@@ -3,30 +3,36 @@ import pandas as pd
 import sqlite3
 
 def show_nfl_team_perf_app():
-    # Upload
     st.title("NFL Team Performance Explorer")
 
     db_file = 'files/NFL_Team_Perf.db'
-    csv_file = 'files/NFL_Team_Perf.csv'  # update if .txt
 
-    @st.cache_data
-    def get_data():
-        conn = sqlite3.connect(db_file)
-        df = pd.read_sql("SELECT * FROM NFL_Team_Perf", conn)
-        conn.close()
-        return df
+    # File uploader for CSV
+    uploaded_csv = st.file_uploader("Upload NFL Team Performance CSV", type=["csv"])
 
     st.header("Browse Data")
-    if st.button("Import CSV to SQLite"):
-        # Import data
-        df = pd.read_csv(csv_file)
+    if uploaded_csv is not None and st.button("Import CSV to SQLite"):
+        df = pd.read_csv(uploaded_csv)
         conn = sqlite3.connect(db_file)
         df.to_sql('NFL_Team_Perf', conn, if_exists='replace', index=False)
         conn.close()
         st.success("Data imported!")
 
+    @st.cache_data
+    def get_data():
+        try:
+            conn = sqlite3.connect(db_file)
+            df = pd.read_sql("SELECT * FROM NFL_Team_Perf", conn)
+            conn.close()
+            return df
+        except Exception:
+            return pd.DataFrame()
+
     df = get_data()
-    st.dataframe(df.head(10))
+    if not df.empty:
+        st.dataframe(df.head(10))
+    else:
+        st.info("No data available. Please import a CSV file first.")
 
     st.markdown("---")
     st.header("Run Queries")
