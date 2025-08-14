@@ -1,6 +1,6 @@
 [theme]
 primaryColor="#FFC72C"         # CSULB Gold
-backgroundColor="#000000"      # Black
-secondaryBackgroundColor="#222222"
-textColor="#FFFFFF"
+backgroundColor="#FFFFFF"      # Black
+secondaryBackgroundColor="#b9b8b8ff"
+textColor="#000000"
 font="sans serif"

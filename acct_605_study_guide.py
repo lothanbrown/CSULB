@@ -7,37 +7,17 @@ from data_analysis_app import show_data_analysis_app
 from slainte_brewery_db_manager import show_slainte_brewery_db_manager
 from eu_superstore_dashboard import show_eu_superstore_dashboard
 from libayshuns_project import show_libayshuns_project
+from ai_chatbox_app import show_ai_chatbox
 
 st.set_page_config(page_title='ACCT 605 Data Analytics Study Guide', layout='wide')
 
 st.title("ACCT 605-01: Data Analytics in Accounting")
 st.markdown("""
-Welcome to your interactive practice guide!
+Welcome to the interactive practice guide!
 Use the sidebar to navigate between topics.
 ---
 """)
-st.markdown(
-    """
-    <style>
-    .stApp {
-        background-color: #000000; /* Black background */
-    }
-    .css-18e3th9 {
-        background-color: #222222 !important;
-    }
-    .css-1d391kg {
-        color: #FFC72C !important;
-    }
-    .stButton>button {
-        background-color: #FFC72C;
-        color: #000;
-        border-radius: 5px;
-        font-weight: bold;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
+
 topics = [
     "Excel Review",
     "Statistics",
@@ -52,7 +32,7 @@ choice = st.sidebar.selectbox("Choose a topic:", topics)
 if choice == topics[0]:
     st.header("Excel Review")
     excel_func = st.radio(
-        "Choose an Excel function to practice:",
+        "Choose function for Excel Practice1:",
         [
             "Text Functions", 
             "Date Functions", 
@@ -149,3 +129,4 @@ elif choice == topics[6]:
 3. **Key Metrics**: Customer Retention, Sales Growth, Campaign ROI.
 """)
     show_libayshuns_project()
+show_ai_chatbox()
