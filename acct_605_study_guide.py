@@ -1,4 +1,5 @@
 import streamlit as st
+from nfl_team_perf_app import show_nfl_team_perf_app
 
 st.set_page_config(page_title='ACCT 605 Data Analytics Study Guide', layout='wide')
 
@@ -9,97 +10,81 @@ Welcome to your interactive study guide! Use the sidebar to navigate between top
 """)
 
 topics = [
-    "Data Analytic Thinking & IMPACT Framework",
-    "Audit, Tax Analytics & Machine Learning",
-    "Storytelling & Presentation Skills",
-    "Analytics & Visualization Tools",
-    "CPA Exam Readiness",
-    "Core Concepts & Practice"
+    "Excel Review",
+    "Statistics",
+    "Structured Query Language",
+    "Alteryx Cloud Application",
+    "Python",
+    "Tableau"
 ]
-choice = st.sidebar.radio("Choose a topic:", topics)
+choice = st.sidebar.selectbox("Choose a topic:", topics)
 
 if choice == topics[0]:
-    st.header("Data Analytic Thinking & IMPACT Framework")
+    st.header("Excel Review")
     st.markdown("""
-#### **IMPACT Framework**
+#### **Excel Functions**
 
-1. **Identify**: What is the business/accounting question?  
-2. **Master**: Prepare, clean, and understand relevant data.  
-3. **Perform**: Run analysis, modeling, or testing.  
-4. **Address**: Refine or revise based on findings.
-5. **Communicate**: Present actionable insights.
-6. **Track**: Monitor for changes or improvements.
-
-**Example**:  
-Margins are falling.  
-- `Identify`: Why?  
-- `Master`: Gather 3 years of sales & expenses.  
-- `Perform`: Trend analysis.  
-- `Address`: Pricing error found, re-run analysis.  
-- `Communicate`: Present the error and fix.  
-- `Track`: Watch for improvements in margin.
-
-**Practice:**  
-Describe your IMPACT steps for investigating rising software expenses.
+1. **SUMIFS**: Conditional sum.
+2. **VLOOKUP**: Vertical lookup.
+3. **Pivot Tables**: Data summarization.
 """)
 
 elif choice == topics[1]:
-    st.header("Audit, Tax Analytics & Machine Learning")
-    st.subheader("Audit & Tax Analytics")
+    st.header("Statistics")
     st.markdown("""
-- **Audit**: Use Benford's Law to check for fraud in vendor invoices.  
-- **Tax**: Aggregate sales by state for correct tax reporting.
+#### **Key Concepts**
 
-**Practice:**  
-What would you do if you find invoice digit anomalies with Benford’s Law?
-""")
-    st.subheader("Machine Learning in Accounting")
-    st.markdown("""
-**Supervised Learning:**  
-Predict overdue accounts using payment history.
-
-**Unsupervised Learning:**  
-Cluster customer payment patterns.
-
-**Practice:**  
-Describe an accounting application for unsupervised learning.
+1. **Mean**: Average value.
+2. **Median**: Middle value.
+3. **Standard Deviation**: Measure of variability.
 """)
 
 elif choice == topics[2]:
-    st.header("Storytelling & Presentation Skills")
-    st.markdown("""
-**Example:**
-"Employee turnover is high" ➔ "Analyzing compensation and exit interviews to suggest retention ideas."
+    st.header("Structured Query Language")
+    sql_lab = st.radio(
+        "Choose a SQL practice:",
+        [
+            "SQL and SQLite practice 1.",
+            "SQL Lab Slainte",
+            "SQL Lab Slainte 2"
+        ]
+    )
 
-**Decision Model Example:**  
-Compare lease vs. buy using sensitivity analysis (Excel).
-
-**Practice:**
-- Reframe: "Inventory losses are increasing."
-- Outline a 3-slide presentation on rising expenses.
-""")
+    if sql_lab == "SQL and SQLite practice 1.":
+        show_nfl_team_perf_app()
+    elif sql_lab == "SQL Lab Slainte":
+        # Call another function or display content
+        pass
+    elif sql_lab == "SQL Lab Slainte 2":
+        # Call another function or display content
+        pass
 
 elif choice == topics[3]:
-    st.header("Analytics & Visualization Tools")
-
-    st.subheader("Excel")
+    st.header("Alteryx Cloud Application")
     st.markdown("""
-**Advanced Functions**: `=SUMIFS`, `=VLOOKUP`, Pivot Tables
+#### **Alteryx Overview**
 
-**Practice:**  
-Highlight all sales over $50,000 where customer name is blank.
+1. **Data Preparation**: Clean and transform data.
+2. **Workflow Automation**: Streamline processes.
+3. **Collaboration**: Share insights easily.
 """)
-    st.subheader("Tableau")
-    st.markdown("""
-Create line & bar charts, dashboard with filters.
 
-**Practice:**  
-Dashboard to compare 3 product lines across regions.
-""")
-    st.subheader("SQL")
+elif choice == topics[4]:
+    st.header("Python")
     st.markdown("""
-**Example:**  
-```sql
-SELECT Vendor, SUM(Amount) FROM Payments WHERE Year=2023 GROUP BY Vendor HAVING SUM(Amount) > 10000;
-```
+#### **Python for Data Analysis**
+
+1. **Pandas**: Data manipulation.
+2. **NumPy**: Numerical computing.
+3. **Matplotlib**: Data visualization.
+""")
+
+elif choice == topics[5]:
+    st.header("Tableau")
+    st.markdown("""
+#### **Tableau Essentials**
+
+1. **Data Connections**: Connect to various data sources.
+2. **Visualizations**: Create interactive dashboards.
+3. **Sharing Insights**: Publish and share reports.
 """)
