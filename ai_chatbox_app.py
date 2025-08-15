@@ -4,7 +4,43 @@ import streamlit as st
 # AI Chatbox for Azure Foundry Agent via Logic App REST API
 def show_ai_chatbox():
     with st.sidebar:
-        st.markdown("## 💬 AI Chatbox")
+        st.markdown(
+            '''
+            <style>
+            .main {
+                background-color: #f8fafc;
+            }
+            .stButton>button {
+                background-color: #2563eb;
+                color: white;
+                border-radius: 6px;
+                padding: 0.5em 1.5em;
+                font-weight: 600;
+                border: none;
+                transition: background 0.2s;
+            }
+            .stButton>button:hover {
+                background-color: #1e40af;
+                color: #fff;
+            }
+            .stSidebar {
+                background-color: #e0e7ef;
+            }
+            .css-1d391kg {  /* Chatbox header */
+                font-size: 1.2em;
+                font-weight: bold;
+                color: #2563eb;
+            }
+            .css-1cpxqw2 {  /* Chat messages */
+                border-radius: 8px;
+                padding: 0.5em 1em;
+                margin-bottom: 0.5em;
+            }
+            </style>
+            ''',
+            unsafe_allow_html=True
+        )
+        st.markdown("## 💬 AI Tutor")
         if "chat_history" not in st.session_state:
             st.session_state["chat_history"] = []
 
