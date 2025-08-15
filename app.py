@@ -9,6 +9,19 @@ from eu_superstore_dashboard import show_eu_superstore_dashboard
 from libayshuns_project import show_libayshuns_project
 from ai_chatbox_app import show_ai_chatbox
 
+st.markdown(
+    """
+    <style>
+    div[data-testid="stExpander"] {
+        border: none;
+        border-radius: 16px;
+        box-shadow: none;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 st.set_page_config(page_title='ACCT 605 Data Analytics Study Guide', layout='wide')
 
 _, exp_col, _ = st.columns([1,3,1])
@@ -113,9 +126,13 @@ with exp_col:
                     Now, go build something awesome on Snowflake! 🚀
 
                     """)
-        
+    st.markdown("<br>", unsafe_allow_html=True)  
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
 topics = [
-    "Excel Review",
+    "Excel Practice",
     "Statistics",
     "SQL Practice",
     "Alteryx Cloud",
@@ -124,24 +141,27 @@ topics = [
     "Libayshuns Project" 
 ]
 choice = st.sidebar.selectbox("Choose a topic:", topics)
+cols = st.columns(2)
 
 if choice == topics[0]:
-    st.header("Excel Review")
-    excel_func = st.radio(
-        "Choose function for Excel Practice1:",
-        [
-            "Text Functions", 
-            "Date Functions", 
-            "PMT Financial Function"
-        ]
-    )
-
-    if excel_func == "Text Functions":
-        show_nfl_text_functions_app()
-    elif excel_func == "Date Functions":
-        show_sec_date_functions_app()
-    elif excel_func == "PMT Financial Function":
-        show_financial_pmt_app()
+    with cols[0]:
+        
+        st.header("📊 Excel Practice")
+        excel_func = st.radio(
+            "Choose function for Excel Practice1:",
+            [
+                "Text Functions", 
+                "Date Functions", 
+                "PMT Financial Function"
+            ]
+        )
+    with cols[1]:
+        if excel_func == "Text Functions":
+            show_nfl_text_functions_app()
+        elif excel_func == "Date Functions":
+            show_sec_date_functions_app()
+        elif excel_func == "PMT Financial Function":
+            show_financial_pmt_app()
 
 elif choice == topics[1]:
     st.header("Statistics")

@@ -3,8 +3,7 @@ import pandas as pd
 import numpy_financial as npf
 
 def show_financial_pmt_app():
-    st.title("Financial Worksheet: PMT Function")
-
+    st.header("💰 PMT Financial Function")
     uploaded_file = st.file_uploader("Upload Excel Practice 1.xlsx", type=["xlsx"])
     if uploaded_file:
         df = pd.read_excel(uploaded_file, sheet_name="Financial")

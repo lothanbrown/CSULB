@@ -3,8 +3,7 @@ import pandas as pd
 from datetime import datetime
 
 def show_sec_date_functions_app():
-    st.title("SEC Rules Date Functions")
-
+    st.header("📅 SEC Rules Date Functions")
     uploaded_file = st.file_uploader("Upload Excel Practice 1.xlsx", type=["xlsx"])
     if uploaded_file:
         df = pd.read_excel(uploaded_file, sheet_name="SEC Rules")
