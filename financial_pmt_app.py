@@ -4,7 +4,7 @@ import numpy_financial as npf
 
 def show_financial_pmt_app():
     st.header("💰 PMT Financial Function")
-    uploaded_file = st.file_uploader("Upload Excel Practice 1.xlsx", type=["xlsx"])
+    uploaded_file = st.file_uploader("Upload Excel Practice 1.xlsx", type=["xlsx"], key="financial_pmt_upload")
     if uploaded_file:
         df = pd.read_excel(uploaded_file, sheet_name="Financial")
         st.write("Original Data:")

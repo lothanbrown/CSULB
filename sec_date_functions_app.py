@@ -4,7 +4,7 @@ from datetime import datetime
 
 def show_sec_date_functions_app():
     st.header("📅 SEC Rules Date Functions")
-    uploaded_file = st.file_uploader("Upload Excel Practice 1.xlsx", type=["xlsx"])
+    uploaded_file = st.file_uploader("Upload Excel Practice 1.xlsx", type=["xlsx"], key="date_functions_upload")
     if uploaded_file:
         df = pd.read_excel(uploaded_file, sheet_name="SEC Rules")
         st.write("Original Data:")

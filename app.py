@@ -8,6 +8,7 @@ from slainte_brewery_db_manager import show_slainte_brewery_db_manager
 from eu_superstore_dashboard import show_eu_superstore_dashboard
 from libayshuns_project import show_libayshuns_project
 from ai_chatbox_app import show_ai_chatbox
+from utils import st_code_block, make_tabs
 
 st.markdown(
     """
@@ -141,30 +142,60 @@ topics = [
     "Libayshuns Project" 
 ]
 choice = st.sidebar.selectbox("Choose a topic:", topics)
-cols = st.columns(2)
+
+st.header("📊 Excel Practice")
+text_tab, date_tab, pmt_tab = make_tabs(["TEXT FUNCTIONS", "DATE FUNCTIONS", "FINANCIAL FUNCTIONS"])
+
+with text_tab:
+    col1, spacer, col2 = st.columns([0.4, 0.05, 0.55])
+    with col1:
+        st.markdown("""
+#### **Takeaways**  
+- **Flash Fill**:    
+  - Automatically extracts first/last names, recombines names into "Last, First" format, and converts to uppercase using Excel's pattern recognition.  
+- **Text Formulas**:    
+  - `TEXTBEFORE` and `TEXTAFTER` extract first and last names from a full name.  
+  - Concatenation (`&`) combines names in the desired format.  
+  - `UPPER` converts text to uppercase.  
+- **Text to Columns**:    
+  - Splits a single column of data (e.g., full names) into multiple columns using delimiters (such as spaces). 
+        """)
+    with col2:
+        show_nfl_text_functions_app()
+with date_tab:
+    col1, spacer, col2 = st.columns([0.4, 0.05, 0.55])
+    with col1:
+        st.markdown("""
+#### **Takeaways**  
+- **Date Formatting**:    
+  - Converting date format to "General" reveals Excel’s serial number for the date.  
+- `TODAY()` function:    
+  - Dynamically enters today’s date.  
+- **Date Arithmetic**:    
+  - Calculates the number of days between today and regulation release dates.  
+- **Extracting Components**:    
+  - `YEAR()`, `MONTH()`, and `DAY()` functions dissect dates into their respective parts.  
+  - `WEEKDAY()` returns the day of the week as a number; use `VLOOKUP` to display the actual day name (e.g., "Monday").  
+        """)
+    with col2:
+        show_sec_date_functions_app()
+with pmt_tab:
+    col1, spacer, col2 = st.columns([0.4, 0.05, 0.55])
+    with col1:
+        st.markdown("""
+#### **Takeaways**  
+- **PMT Function**:  
+  - Calculates monthly payments for loans based on interest rate, number of periods, and principal amount.  
+  - Ideal for analyzing payment sensitivity as interest rates change.  
+  - Use **absolute references** to apply the same values across multiple calculations.  
+        """)
+    with col2:
+        show_financial_pmt_app()
 
 if choice == topics[0]:
-    with cols[0]:
-        
-        st.header("📊 Excel Practice")
-        excel_func = st.radio(
-            "Choose function for Excel Practice1:",
-            [
-                "Text Functions", 
-                "Date Functions", 
-                "PMT Financial Function"
-            ]
-        )
-    with cols[1]:
-        if excel_func == "Text Functions":
-            show_nfl_text_functions_app()
-        elif excel_func == "Date Functions":
-            show_sec_date_functions_app()
-        elif excel_func == "PMT Financial Function":
-            show_financial_pmt_app()
-
+    pass
 elif choice == topics[1]:
-    st.header("Statistics")
+    st.header("🧠 Statistics")
     analysis_tool = st.radio(
         "Choose a statistical analysis tool:",
         [
@@ -178,7 +209,7 @@ elif choice == topics[1]:
     show_data_analysis_app(selected_tool=analysis_tool)
 
 elif choice == topics[2]:
-    st.header("Structured Query Language")
+    st.header("🗃️ Structured Query Language")
     sql_lab = st.radio(
         "Choose a SQL practice:",
         [
@@ -198,7 +229,7 @@ elif choice == topics[2]:
         pass
 
 elif choice == topics[3]:
-    st.header("Alteryx Cloud Application")
+    st.header("☁️ Alteryx Cloud Application")
     st.markdown("""
 #### **Alteryx Overview**
 
@@ -208,7 +239,7 @@ elif choice == topics[3]:
 """)
 
 elif choice == topics[4]:
-    st.header("Python")
+    st.header("🐍 Python")
     python_option = st.radio(
         "Choose a Python practice:",
         [
@@ -236,7 +267,7 @@ elif choice == topics[5]:  # or whatever index you want
 """)
     show_eu_superstore_dashboard()
 elif choice == topics[6]:
-    st.header("Libayshuns Project")
+    st.header("🤝 Libayshuns Project")
     st.markdown("""
 #### **Libayshuns Project Overview**
 
