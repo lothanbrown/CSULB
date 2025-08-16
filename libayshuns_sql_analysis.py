@@ -70,4 +70,19 @@ def show_libayshuns_sql_analysis():
 
         conn.close()
     else:
-        st.info("Upload both Sales and Master Inventory CSVs to begin SQL analysis.")
+        st.markdown(
+            '''
+            <div style="
+                background-color: rgba(255, 199, 44, 0.3);
+                color: #000;
+                padding: 12px 16px;
+                border-radius: 8px;
+                font-weight: 600;
+                margin-bottom: 1rem;
+                border: 1.5px solid #e6b800;
+            ">
+                Upload both Sales and Master Inventory CSVs to begin SQL analysis.
+            </div>
+            ''',
+            unsafe_allow_html=True
+        )

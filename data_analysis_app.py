@@ -6,7 +6,7 @@ from scipy import stats
 import statsmodels.api as sm
 
 def show_data_analysis_app(selected_tool=None):
-    st.header("Excel Data Analysis Toolpak")
+    st.markdown(''' #### **Excel Data Analysis Toolpak** ''')
 
     uploaded_file = st.file_uploader("Upload NFL Starting QB Ranked-1.xlsx", type=["xlsx"], key=f"data_analysis_upload_{selected_tool}")
     summary = ""

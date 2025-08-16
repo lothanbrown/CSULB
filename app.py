@@ -10,12 +10,20 @@ from libayshuns_project import show_libayshuns_project
 from ai_chatbox_app import show_ai_chatbox
 from utils import st_code_block, make_tabs
 from app_markdown_blocks import (
-    get_expander_css, get_logo_html, get_how_to_use, get_how_to_use_info, get_how_to_use_feedback,
+    get_button_css, get_expander_css, get_file_uploader_css, get_logo_html, get_how_to_use, get_how_to_use_info, get_how_to_use_feedback,
     get_excel_text_takeaways, get_excel_date_takeaways, get_excel_pmt_takeaways,
     get_alteryx_overview, get_eu_superstore_overview, get_libayshuns_overview, get_statistics_correlation_regression_col1, get_statistics_descriptive_col1, get_statistics_histogram_col1
 )
-
+st.markdown(get_button_css(), unsafe_allow_html=True)
 st.markdown(get_expander_css(), unsafe_allow_html=True)
+st.markdown(get_file_uploader_css(), unsafe_allow_html=True)
+
+
+for _ in range(3):
+    st.sidebar.markdown("<br>", unsafe_allow_html=True)
+st.sidebar.image("files/logo.png", use_container_width=True)  # Add logo to the top of the sidebar
+st.sidebar.markdown("<br>", unsafe_allow_html=True)
+
 
 st.set_page_config(page_title='ACCT 605 Data Analytics Study Guide', layout='wide')
 
@@ -139,4 +147,4 @@ elif choice == topics[6]:
     st.header("🤝 Libayshuns Project")
     st.markdown(get_libayshuns_overview())
     show_libayshuns_project()
-show_ai_chatbox()
+# show_ai_chatbox()

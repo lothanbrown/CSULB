@@ -1,3 +1,44 @@
+def get_file_uploader_css():
+    return '''
+    <style>
+    /* Change file uploader button and border color */
+      .stFileUploader label {
+        background: #FFC72C !important;
+        color: #000 !important;
+        display: block !important;
+        width: 100% !important;
+        border-radius: 6px !important;
+        padding: 4px 10px !important;
+        font-weight: 600 !important;
+    }
+    .stFileUploader label div:hover {
+        background-color: #e6b800 !important;
+        color: #000 !important;
+    }
+    .stFileUploader {
+        border: 0px solid #FFC72C !important;
+        border-radius: 0px !important;
+    }
+    .stFileUploader .css-1cpxqw2, .stFileUploader .css-9ycgxx, .stFileUploader span {
+        color: #000 !important;
+        background: none !important;
+    }
+    </style>
+    '''
+def get_button_css():
+    return '''
+    <style>
+    .stButton>button {
+        background-color: #FFC72C !important;
+        color: #000 !important;
+        border: none !important;
+    }
+    .stButton>button:hover {
+        background-color: #e6b800 !important;
+        color: #000 !important;
+    }
+    </style>
+    '''
 def get_statistics_correlation_regression_col1():
     return '''
 #### **Takeaways**

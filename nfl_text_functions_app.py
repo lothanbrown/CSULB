@@ -2,7 +2,8 @@ import streamlit as st
 import pandas as pd
 
 def show_nfl_text_functions_app():
-    st.header("🏈 NFL Players Text Functions")
+    st.markdown(''' #### **🏈 NFL Players Text Functions** ''')
+
     uploaded_file = st.file_uploader("Upload Excel Practice 1.xlsx", type=["xlsx"])
     if uploaded_file:
         df = pd.read_excel(uploaded_file, sheet_name="NFL Players")
