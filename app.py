@@ -12,7 +12,7 @@ from utils import st_code_block, make_tabs
 from app_markdown_blocks import (
     get_expander_css, get_logo_html, get_how_to_use, get_how_to_use_info, get_how_to_use_feedback,
     get_excel_text_takeaways, get_excel_date_takeaways, get_excel_pmt_takeaways,
-    get_alteryx_overview, get_eu_superstore_overview, get_libayshuns_overview
+    get_alteryx_overview, get_eu_superstore_overview, get_libayshuns_overview, get_statistics_correlation_regression_col1, get_statistics_descriptive_col1, get_statistics_histogram_col1
 )
 
 st.markdown(get_expander_css(), unsafe_allow_html=True)
@@ -39,44 +39,57 @@ topics = [
 ]
 choice = st.sidebar.selectbox("Choose a topic:", topics)
 
-st.header("📊 Excel Practice")
-text_tab, date_tab, pmt_tab = make_tabs(["TEXT FUNCTIONS", "DATE FUNCTIONS", "FINANCIAL FUNCTIONS"])
 
-with text_tab:
-    col1, spacer, col2 = st.columns([0.4, 0.05, 0.55])
-    with col1:
-        st.markdown(get_excel_text_takeaways())
-    with col2:
-        show_nfl_text_functions_app()
-with date_tab:
-    col1, spacer, col2 = st.columns([0.4, 0.05, 0.55])
-    with col1:
-        st.markdown(get_excel_date_takeaways())
-    with col2:
-        show_sec_date_functions_app()
-with pmt_tab:
-    col1, spacer, col2 = st.columns([0.4, 0.05, 0.55])
-    with col1:
-        st.markdown(get_excel_pmt_takeaways())
-    with col2:
-        show_financial_pmt_app()
 
 if choice == topics[0]:
-    pass
+    st.header("📊 Excel Practice")
+    text_tab, date_tab, pmt_tab = make_tabs(["TEXT FUNCTIONS", "DATE FUNCTIONS", "FINANCIAL FUNCTIONS"])
+
+    with text_tab:
+        col1, spacer, col2 = st.columns([0.4, 0.05, 0.55])
+        with col1:
+            st.markdown(get_excel_text_takeaways())
+        with col2:
+            show_nfl_text_functions_app()
+    with date_tab:
+        col1, spacer, col2 = st.columns([0.4, 0.05, 0.55])
+        with col1:
+            st.markdown(get_excel_date_takeaways())
+        with col2:
+            show_sec_date_functions_app()
+    with pmt_tab:
+        col1, spacer, col2 = st.columns([0.4, 0.05, 0.55])
+        with col1:
+            st.markdown(get_excel_pmt_takeaways())
+        with col2:
+            show_financial_pmt_app()
 elif choice == topics[1]:
     st.header("🧠 Statistics")
-    analysis_tool = st.radio(
-        "Choose a statistical analysis tool:",
-        [
-            "Descriptive Statistics", 
-            "Histogram", 
-            "Correlation", 
-            "Regression"
-        ]
-    )
-
-    show_data_analysis_app(selected_tool=analysis_tool)
-
+    tab_1, tab_2, tab_3, tab_4 = make_tabs(["DESCRIPTIVE", "HISTOGRAM", "CORRELATION", "REGRESSION"])
+    with tab_1:
+        col1, spacer, col2 = st.columns([0.4, 0.05, 0.55])
+        with col1:
+            st.markdown(get_statistics_descriptive_col1())
+        with col2:
+            show_data_analysis_app(selected_tool="Descriptive Statistics")
+    with tab_2:
+        col1, spacer, col2 = st.columns([0.4, 0.05, 0.55])
+        with col1:
+            st.markdown(get_statistics_histogram_col1())
+        with col2:
+            show_data_analysis_app(selected_tool="Histogram")
+    with tab_3:
+        col1, spacer, col2 = st.columns([0.4, 0.05, 0.55])
+        with col1:
+            st.markdown(get_statistics_correlation_regression_col1())
+        with col2:
+           show_data_analysis_app(selected_tool= "Correlation")
+    with tab_4:
+        col1, spacer, col2 = st.columns([0.4, 0.05, 0.55])
+        with col1:
+            st.markdown(get_statistics_correlation_regression_col1())
+        with col2:
+           show_data_analysis_app(selected_tool= "Regression")
 elif choice == topics[2]:
     st.header("🗃️ Structured Query Language")
     sql_lab = st.radio(

@@ -6,21 +6,24 @@ from scipy import stats
 import statsmodels.api as sm
 
 def show_data_analysis_app(selected_tool=None):
-    st.title("Excel Data Analysis Toolpak (Python Version)")
+    st.header("Excel Data Analysis Toolpak")
 
-    uploaded_file = st.file_uploader("Upload Excel Practice 1-2.xlsx", type=["xlsx"])
+    uploaded_file = st.file_uploader("Upload NFL Starting QB Ranked-1.xlsx", type=["xlsx"], key=f"data_analysis_upload_{selected_tool}")
     summary = ""
     if uploaded_file:
         xl = pd.ExcelFile(uploaded_file)
-        sheet = st.selectbox("Select worksheet", xl.sheet_names)
+        sheet = st.selectbox(
+            "Select worksheet", xl.sheet_names, key=f"selectbox_sheet_{selected_tool}")
         df = xl.parse(sheet)
         st.write("Data Preview:")
         st.dataframe(df)
 
         num_cols = df.select_dtypes(include=[np.number]).columns.tolist()
         st.write("Numeric columns detected:", num_cols)
-        cap_col = st.selectbox("Select Cap Space column", num_cols)
-        pct_col = st.selectbox("Select PCT column", num_cols)
+        cap_col = st.selectbox(
+            "Select Cap Space column", num_cols, key=f"selectbox_cap_col_{selected_tool}")
+        pct_col = st.selectbox(
+            "Select PCT column", num_cols, key=f"selectbox_pct_col_{selected_tool}")
 
         if selected_tool == "Descriptive Statistics":
             st.subheader("Descriptive Statistics (Cap Space)")

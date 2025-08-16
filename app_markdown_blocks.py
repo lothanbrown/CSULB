@@ -1,3 +1,47 @@
+def get_statistics_correlation_regression_col1():
+    return '''
+#### **Takeaways**
+- **Purpose:**  
+    - Correlation quantifies the linear association between two variables (for example, does more experience correlate with more rushing yards?).
+    - Regression evaluates the predictive capability of one variable upon another and quantifies the strength and form of their relationship.
+- **Preparation:**  
+    - Place the variables of interest adjacent on your worksheet (e.g., copy ‘Yrs Experience’ and ‘Rushing Yards’ side by side).
+- **Correlation Analysis:**  
+    - Go to Data > Data Analysis > Correlation, select both columns (with labels), specify output range.
+    - Output is a correlation matrix (values range -1 to 1); closer to 1 indicates strong positive relationship, closer to -1 indicates strong negative, near 0 suggests little/no linear relationship.
+- **Regression Analysis:**  
+    - Go to Data > Data Analysis > Regression.
+    - Select ‘Rushing Yards’ as the dependent variable (Input Y), and ‘Years of Experience’ as the independent variable (Input X).
+    - Mark the box for labels, designate output, and choose ‘Line Fit Plots’ for visualization.
+    - Examine ‘Summary Output’ for Multiple R (overall correlation in regression), coefficient values, t-statistic (measures reliability of predictor), and P-value (statistical significance test).
+    - **Interpreting Output:**  
+        - If the coefficient for years of experience has a high P-value (e.g., 0.26), this indicates statistical insignificance; years of experience does not reliably predict rushing yards.
+        - Multiple R gives an idea of total correlation from the regression; if familiar, it matches simple correlation coefficient for one predictor.
+    - Encourages critical assessment rather than assuming all relationships are meaningful.
+    '''
+def get_statistics_histogram_col1():
+    return '''
+#### **Takeaways**
+- **Purpose:** A histogram visually depicts the frequency distribution of a variable within selected bins, helping you identify patterns such as skewness, modality, and concentration of values.
+- **Process:**  
+    - Access Data > Data Analysis > Histogram, select the 'Cash' column as your input range, skip bin range if unsure, and choose to output to a new worksheet.
+    - Tick options for Pareto (ranking bins by frequency), Cumulative Percentage (shows accumulation of frequencies), and Chart Output (visualizes results).
+- **Analysis:**  
+    - Excel automatically determines a bin count unless specified otherwise. The highest frequency bin reveals the range most common among participants.
+    - Reviewing histograms helps pinpoint whether data is evenly spread, clustered, or contains significant outliers.
+    '''
+def get_statistics_descriptive_col1():
+    return '''
+#### **Takeaways**
+- **Purpose:** To summarize key characteristics of dataset columns such as average, spread, and extremities (e.g., mean, median, mode, standard deviation, minimum, maximum).
+- **Process:**  
+    - Go to Data > Data Analysis > Descriptive Statistics.
+    - Specify your input range (e.g., PCT data Q1:Q33), indicate if labels are present, choose your output location, and check 'Summary statistics.'
+    - The provided output consolidates several calculations into a summary, eliminating the need for manual one-by-one computations.
+    - **Interpretation:** The descriptive statistics help you quickly gauge the central tendency, variability, and shape of the data distribution, setting a foundation for further analysis.
+    - For example, you can see if the data is skewed or has outliers by comparing the mean and median, and the standard deviation tells you how spread out values are.
+    - Repeating the process for 'Cash' pay column produces a similar automated summary.
+    '''
 def get_expander_css():
     return '''
     <style>
