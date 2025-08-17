@@ -1,4 +1,9 @@
 import streamlit as st
+from mt_alteryx_app import show_alteryx_app
+from mt_company_files import show_company_files
+from mt_excel_app import show_excel_app
+from mt_python_app import show_python_app
+from mt_sql_app import show_sql_app
 from nfl_team_perf_app import show_nfl_team_perf_app
 from nfl_text_functions_app import show_nfl_text_functions_app
 from sec_date_functions_app import show_sec_date_functions_app
@@ -43,7 +48,8 @@ topics = [
     "Alteryx Cloud",
     "Python",
     "Tableau",
-    "Libayshuns Project" 
+    "Libayshuns Project",
+    "Midterm Project"
 ]
 choice = st.sidebar.selectbox("Choose a topic:", topics)
 
@@ -147,4 +153,37 @@ elif choice == topics[6]:
     st.header("🤝 Libayshuns Project")
     st.markdown(get_libayshuns_overview())
     show_libayshuns_project()
-# show_ai_chatbox()
+elif choice == topics[7]:
+    st.header("📊 Midterm Project: Johnson & Johnson (JNJ)")
+    tab_1, tab_2, tab_3, tab_4, tab_5 = make_tabs(["FILES", "SQL", "Python", "Alteryx","Excel"])
+
+    with tab_1:
+        col1, spacer, col2 = st.columns([0.4, 0.05, 0.55])
+        with col1:
+            st.info("Upload the company and industry data files to start.")
+        with col2:
+            show_company_files()
+    with tab_2:
+        col1, spacer, col2 = st.columns([0.4, 0.05, 0.55])
+        with col1:
+            st.markdown("**SQL Automation**")
+        with col2:
+            show_sql_app()
+    with tab_3:
+        col1, spacer, col2 = st.columns([0.4, 0.05, 0.55])
+        with col1:
+            st.markdown("**Python Automation**")
+        with col2:
+            show_python_app()
+    with tab_4:
+        col1, spacer, col2 = st.columns([0.4, 0.05, 0.55])
+        with col1:
+            st.markdown("**Alteryx Automation**")
+        with col2:
+            show_alteryx_app()
+    with tab_5:
+        col1, spacer, col2 = st.columns([0.4, 0.05, 0.55])
+        with col1:
+            st.markdown("**Excel Automation**")
+        with col2:
+            show_excel_app()
